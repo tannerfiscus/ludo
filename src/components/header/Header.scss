@@ -3,7 +3,7 @@
 
 .header {
     align-items: center;
-    border-bottom: 1px solid $gray-mid;
+    border-bottom: 1px solid $dark-brown;
     background: $light-tan;
     display: flex;
     height: 25px;
@@ -11,6 +11,7 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 10;
 }
 
 .header-logo {

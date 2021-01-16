@@ -18,14 +18,13 @@ const Header = () => {
                 <div />
                 <div />
             </div>
-            {
-                userName ? (
-                    <span className="header-name">
-                        <Text>Hello</Text>{', '}
-                        {userName}
-                    </span>
-                ) : null
-            }
+
+            <span className="header-name">
+                <Text>Hello</Text>
+                {
+                    userName ? `, ${userName}` : null
+                }
+            </span>
             <button className="header-logout-button" onClick={() => firebase.doSignOut()}>
                 <Text>Log out</Text>
             </button>

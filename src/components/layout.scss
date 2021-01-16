@@ -41,7 +41,6 @@ form {
 }
 
 .content {
-	min-height: 100vh;
 	width: 100%;
 }
 
@@ -51,6 +50,7 @@ form {
 	padding: 40px;
 	margin: 0 auto;
 	max-width: 500px;
+	min-height: 100vh;
 
 	> div {
 		flex: 1 auto;
