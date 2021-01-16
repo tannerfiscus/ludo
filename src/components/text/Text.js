@@ -8,6 +8,7 @@ const englishToGermanMap = {
     'Password': 'Passwort',
     'Email address': 'E-Mail-Addresse',
     'Log out': 'Ausloggen',
+    'Let\'s play': 'Lass uns spielen', 
 };
 
 const Text = ({ children }) => {
