@@ -1,0 +1,62 @@
+@import '../../constants/styles/colors';
+@import '../../constants/styles/typography';
+
+.header {
+    align-items: center;
+    border-bottom: 1px solid $gray-mid;
+    background: $light-tan;
+    display: flex;
+    height: 25px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.header-logo {
+    display: inline-block;
+    padding-right: 16px;
+
+    div {
+        background: $dark-brown;
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+    }
+
+    div:nth-of-type(2) {
+        background: $yellow;
+    }
+
+    div:nth-of-type(3) {
+        background: $green;
+    }
+
+    div:nth-of-type(4) {
+        background: $red;
+    }
+}
+
+.header-name {
+    flex: 1 auto;
+    font-size: 0.875em;
+    font-family: $serif;
+}
+
+.header-logout-button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    height: 24px;
+    font-family: $serif;
+    font-weight: 900;
+    padding: 0 16px;
+    margin: 0;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $gray-mid;
+    }
+}

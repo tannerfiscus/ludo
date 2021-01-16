@@ -1,0 +1,39 @@
+@import '../../constants/styles/colors';
+@import '../../constants/styles/typography';
+
+.input {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 1px solid $gray-mid;
+    border-radius: 8px;
+    font-family: $serif;
+    font-size: 1em;
+    padding: 12px;
+    margin-top: 16px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+
+    &:focus {
+        border-color: $dark-brown;
+        outline: none;
+    }
+}
+
+.label {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.label-text {
+    position: absolute;
+    left: 12px;
+    top: 29px;
+    transition: transform 0.3s ease;
+
+    .label--populated &,
+    .input:focus + & {
+        transform: translateY(-37px) translateX(-18px) scale(0.8);
+    }
+}

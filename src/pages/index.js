@@ -1,22 +1,99 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import { navigate } from 'gatsby';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+import Button from '../components/button/Button';
+import Container from '../components/container/Container';
+import Input from '../components/input/Input';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import Text from '../components/text/Text';
+
+import FirebaseContext from '../components/firebase/FirebaseContext';
+
+const IndexPage = () => {
+	const firebaseContext = React.useContext(FirebaseContext);
+	const [isLoggedIn, setIsLoggedIn] = React.useState(null);
+	const [formState, setFormState] = React.useState({ email: '', password: '' });
+	const { email, password } = formState;
+
+	const onChange = e => {
+		setFormState({
+			...formState,
+			[e.currentTarget.name]: e.currentTarget.value,
+		});
+	}
+
+	const onSubmit = e => {
+		e.preventDefault();
+        firebaseContext
+            .doSignInWithEmailAndPassword(email, password)
+            .then(authUser => {
+				console.log('authUser', authUser);
+            })
+            .catch(error => {
+				if (error.message) {
+					alert(error.message);
+				} else {
+					alert('Something went wrong.');
+				}
+			});
+    };
+
+	React.useEffect(() => {
+		const listener = firebaseContext.auth.onAuthStateChanged(authUser => {
+			if (authUser) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		});
+		return () => listener();
+	}, []);
+
+	React.useEffect(() => {
+		if (isLoggedIn) {
+			navigate('/play');
+		}
+	}, [isLoggedIn]);
+
+	return (
+		<Layout showHeader={false}>
+			<SEO title="Home" />
+			<div>
+				<h1>
+					<Text>Log in</Text>
+				</h1>
+				<Container mt={3}>
+					<form onSubmit={onSubmit}>
+						<Container p={4}>
+							<Input
+								name="email"
+								onChange={onChange}
+								type="text"
+								label="Email address"
+								value={email}
+							/>
+							<Container pt={3}>
+								<Input
+									name="password"
+									onChange={onChange}
+									type="password"
+									label="Password"
+									value={password}
+								/>
+							</Container>
+							<Container pt={3}>
+								<Button fullWidth type="submit">
+									<Text>Log in</Text>
+								</Button>
+							</Container>
+						</Container>
+					</form>
+				</Container>
+			</div>
+		</Layout>
+	);
+};
 
 export default IndexPage
