@@ -19,7 +19,7 @@ const gameSections = [
 const Game = ({ gameId }) => {
     let pieceIndex = 0;
     return (
-        <GameContextProvider>
+        <GameContextProvider gameId={gameId}>
             <DndProvider backend={HTML5Backend}>
                 <Layout isFullWidth>
                     <div className="game-wrapper">

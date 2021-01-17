@@ -1,29 +1,33 @@
 import React from 'react';
 
-const defaultState = {
-    board: {
-        stones: new Array(40).fill(null),
-    },
-    home: {
-        black: new Array(4).fill(null),
-        yellow: new Array(4).fill(null),
-        red: new Array(4).fill(null),
-        green: new Array(4).fill(null),
-    },
-    resting: {
-        black: ['black-0','black-1','black-2','black-3'],
-        yellow: ['yellow-0','yellow-1','yellow-2','yellow-3'],
-        red: ['red-0','red-1','red-2','red-3'],
-        green: ['green-0','green-1','green-2','green-3'],
-    },
-};
+import FirebaseContext from '../firebase/FirebaseContext';
+import Text from '../text/Text';
 
-const GameContext = React.createContext(defaultState);
+import { defaultGameState } from '../../constants/game';
+
+const GameContext = React.createContext(defaultGameState);
 
 const getStoneColorFromId = id => id.slice(0, id.indexOf('-'));
 
-export const GameContextProvider = ({ children }) => {
-    const [boardState, setBoardState] = React.useState(defaultState);
+export const GameContextProvider = ({ children, gameId }) => {
+    const firebase = React.useContext(FirebaseContext);
+    const [boardState, setBoardState] = React.useState(defaultGameState);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [isValidGame, setIsValidGame] = React.useState(true);
+
+    React.useEffect(() => {
+        firebase.game(gameId).on('value', snapshot => {
+            const gameState = snapshot.val();
+            if (isLoading) {
+                setIsLoading(false);
+            }
+            if (!gameState) {
+                setIsValidGame(false);
+            } else {
+                setBoardState(gameState);
+            }
+        });
+    }, [gameId]);
 
     const setStonePlacement = ({
         currentPlacement,
@@ -37,7 +41,7 @@ export const GameContextProvider = ({ children }) => {
 
         const updateExistingPlacementMappingFunction = (value, index) => {
             if (index === currentPlacementIndex) {
-                return null;
+                return '';
             } else if (index === newPlacementIndex) {
                 return id;
             }
@@ -65,13 +69,13 @@ export const GameContextProvider = ({ children }) => {
                 ...(currentPlacement === 'board' ? {
                     stones: [
                         ...boardState.board.stones.slice(0, currentPlacementIndex),
-                        null,
+                        '',
                         ...boardState.board.stones.slice(currentPlacementIndex + 1),
                     ]
                 }: {
                     [stoneColor]: [
                         ...boardState[currentPlacement][stoneColor].slice(0, currentPlacementIndex),
-                        null,
+                        '',
                         ...boardState[currentPlacement][stoneColor].slice(currentPlacementIndex + 1),
                     ]
                 })
@@ -99,8 +103,12 @@ export const GameContextProvider = ({ children }) => {
             const availableReturnIndex = newBoardState.resting[returningStoneColor].findIndex(r => !r);
             newBoardState.resting[returningStoneColor][availableReturnIndex] = returningStoneId;
         }
-        
-        setBoardState(newBoardState);
+
+        firebase.game(gameId).set(newBoardState, (error) => {
+            if (error) {
+                alert('An error occurred saving the game state');
+            }
+        });
     };
 
     return (
@@ -108,7 +116,9 @@ export const GameContextProvider = ({ children }) => {
             boardState,
             setStonePlacement,
         }}>
-            { children }
+            { isLoading ? null : (
+                isValidGame ? children : <h1><Text>Game not found</Text></h1>
+             ) }
         </GameContext.Provider>
     );
 };

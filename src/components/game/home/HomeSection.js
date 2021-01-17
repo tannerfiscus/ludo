@@ -9,8 +9,6 @@ const HomeSection = ({ color }) => {
     const { boardState: { home } } = React.useContext(GameContext);
     const sectionStones = home[color];
 
-    console.log('sectionStones', sectionStones);
-
     return (
         <ul className={`home-section home-section--${color}`}>
             {

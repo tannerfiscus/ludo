@@ -23,7 +23,8 @@
     "react-dnd-html5-backend": "^11.1.3",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
-    "sass": "^1.32.4"
+    "sass": "^1.32.4",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "prettier": "2.2.1"

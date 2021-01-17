@@ -20,10 +20,6 @@ class Firebase {
     this.db = app.database();
   }
 
-  // doCreateUserWithEmailAndPassword = (email, password) => {
-  //   return this.auth.createUserWithEmailAndPassword(email, password);
-  // }
-
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
  
   doPasswordUpdate = password => {
@@ -42,12 +38,9 @@ class Firebase {
     return this.db.ref(`users/${userId}`);
   }
 
-  // plan = (userId, planStartDate) => {
-  //   console.log('planStartDate', planStartDate);
-  //   return this.db.ref(`plans/${userId}/${planStartDate}`)
-  // };
-
-  // plans = () => this.db.ref('plans');
+  game = (gameId) => {
+    return this.db.ref(`games/${gameId}`);
+  }
 }
  
 export default Firebase;

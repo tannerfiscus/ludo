@@ -28,9 +28,7 @@ const IndexPage = () => {
 		e.preventDefault();
         firebaseContext
             .doSignInWithEmailAndPassword(email, password)
-            .then(authUser => {
-				console.log('authUser', authUser);
-            })
+            .then(() => {})
             .catch(error => {
 				if (error.message) {
 					alert(error.message);
