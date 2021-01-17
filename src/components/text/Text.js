@@ -20,11 +20,11 @@ const Text = ({ children }) => {
 
     const string = children.toString();
 
-    if (language === 'de') {
-        return englishToGermanMap[string] || string;
+    if (language === 'en') {
+        return string;
     }
     
-    return string;
+    return englishToGermanMap[string] || string;
 };
 
 export default Text;
