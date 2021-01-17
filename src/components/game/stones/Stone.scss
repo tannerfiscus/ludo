@@ -1,0 +1,31 @@
+@import '../../../constants/styles/colors';
+@import '../../../constants/styles/game';
+
+.stone {
+    border-radius: 50%;
+    cursor: move;
+    height: $stone-size;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    width: $stone-size;
+}
+
+.stone--dragging {
+    opacity: 0.3;
+}
+
+.stone--black {
+    background: $dark-brown;
+}
+
+.stone--green {
+    background: $green;
+}
+
+.stone--red {
+    background: $red;
+}
+
+.stone--yellow {
+    background: $yellow;
+}

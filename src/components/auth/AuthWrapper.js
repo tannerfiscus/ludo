@@ -18,8 +18,6 @@ const AuthWrapper = ({ children }) => {
                 if (!userName) {
                     firebaseContext.getUserName(authUser.uid).on('value', snapshot => {
                         const name = snapshot.val();
-                        console.log('snapshot', snapshot);
-                        console.log('snapshot value', name);
                         if (name) {
                             setUserName(name);
                         }

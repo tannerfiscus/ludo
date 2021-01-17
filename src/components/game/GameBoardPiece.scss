@@ -1,0 +1,21 @@
+@import '../../constants/styles/colors';
+@import '../../constants/styles/game';
+
+.game-piece {
+    background: #fff;
+    border: 1px solid $gray-mid;
+    border-radius: 50%;
+    box-shadow: none;
+    height: $stone-size;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    width: $stone-size;
+}
+
+.game-piece--hovered {
+    background: $gray-mid;
+    box-shadow: 0 0 8px $gray;
+}
+
+.game-piece--occupied {
+    border: none;
+}

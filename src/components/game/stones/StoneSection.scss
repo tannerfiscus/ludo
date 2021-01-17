@@ -1,0 +1,68 @@
+@import '../../../constants/styles/colors';
+@import '../../../constants/styles/game';
+
+.stones {
+    height: 108px;
+    position: absolute;
+    width: 108px;
+
+    .stone-spot {
+        border-radius: 50%;
+        display: inline-block;
+        height: $stone-size;
+        width: $stone-size;
+
+        &:nth-child(2) {
+            margin-left: 12px;
+        }
+
+        &:nth-child(3) {
+            margin-top: 12px;
+        }
+
+        &:nth-child(4) {
+            margin-left: 12px;
+            margin-top: 12px;
+        }
+    }
+}
+
+.stones--black {
+    bottom: 16px;
+    left: 16px;
+
+    .stone-spot:not(.stone-spot--filled) {
+        border: 1px solid $dark-brown;
+        background: lighten($dark-brown, 70%);
+    }
+}
+
+.stones--yellow {
+    left: 16px;
+    top: 16px;
+
+    .stone-spot:not(.stone-spot--filled) {
+        background: lighten($yellow, 26%);
+        border: 1px solid $yellow;
+    }
+}
+
+.stones--green {
+    right: 16px;
+    top: 16px;
+
+    .stone-spot:not(.stone-spot--filled) {
+        border: 1px solid $green;
+        background: lighten($green, 39%);
+    }
+}
+
+.stones--red {
+    bottom: 16px;
+    right: 16px;
+
+    .stone-spot:not(.stone-spot--filled) {
+        border: 1px solid $red;
+        background: lighten($red, 37%);
+    }
+}
