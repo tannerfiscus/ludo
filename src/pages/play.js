@@ -7,10 +7,10 @@ import Home from '../components/home/Home';
 import Game from '../components/game/Game';
 import SEO from '../components/seo';
 
-const Play = () => (
+const Play = ({ location }) => (
     <>
         <SEO title="Play" />
-        <AuthWrapper>
+        <AuthWrapper location={location}>
             <Router basepath="/play">
                 <Game path="/:gameId" />
                 <Home path="/" />

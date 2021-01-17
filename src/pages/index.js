@@ -11,7 +11,7 @@ import Text from '../components/text/Text';
 
 import FirebaseContext from '../components/firebase/FirebaseContext';
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
 	const firebaseContext = React.useContext(FirebaseContext);
 	const [isLoggedIn, setIsLoggedIn] = React.useState(null);
 	const [formState, setFormState] = React.useState({ email: '', password: '' });
@@ -51,7 +51,12 @@ const IndexPage = () => {
 
 	React.useEffect(() => {
 		if (isLoggedIn) {
-			navigate('/play');
+			const searchParams = new URLSearchParams(location.search);
+			if (searchParams.get('redirect')) {
+				navigate(searchParams.get('redirect'));
+			} else {
+				navigate('/play');
+			}
 		}
 	}, [isLoggedIn]);
 

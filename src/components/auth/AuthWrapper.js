@@ -5,7 +5,7 @@ import { navigate } from 'gatsby';
 import FirebaseContext from '../firebase/FirebaseContext';
 import UserContext from '../user/UserContext';
 
-const AuthWrapper = ({ children }) => {
+const AuthWrapper = ({ children, location }) => {
     const firebaseContext = React.useContext(FirebaseContext);
     const { setUserName, userName } = React.useContext(UserContext);
 	const [isLoggedIn, setIsLoggedIn] = React.useState(null);
@@ -32,7 +32,7 @@ const AuthWrapper = ({ children }) => {
 
 	React.useEffect(() => {
 		if (isLoggedIn === false) {
-			navigate('/');
+			navigate(location ? `/?redirect=${location.pathname}` : '/');
 		}
     }, [isLoggedIn]);
     
