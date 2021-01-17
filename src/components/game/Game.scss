@@ -5,6 +5,7 @@
     border: 8px solid $red;
     box-sizing: border-box;
     height: calc(100vh - 25px);
+    height: calc((var(--vh, 1vh) * 100) - 25px);
     margin-top: 25px;
     min-height: 674px;
     min-width: 756px;

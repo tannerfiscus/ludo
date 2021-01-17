@@ -19,6 +19,18 @@ const gameSections = [
 
 const Game = ({ gameId }) => {
     let pieceIndex = 0;
+
+    React.useEffect(() => {
+        const calculateInnerHeight = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        calculateInnerHeight();
+
+        window.addEventListener('resize', calculateInnerHeight);
+        return () => window.removeEventListener('resize', calculateInnerHeight);
+    }, []);
+
     return (
         <GameContextProvider gameId={gameId}>
             <DndProvider backend={HTML5Backend}>
