@@ -39,6 +39,7 @@ const GameBoardPiece = ({ index }) => {
                 'game-piece--occupied': currentStone,
                 'game-piece--hovered': isOver,
             })}
+            data-piece-number={index}
             ref={drop}
         >
             { currentStone && (
