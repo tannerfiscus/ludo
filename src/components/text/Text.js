@@ -13,6 +13,8 @@ const englishToGermanMap = {
     'Join existing game': 'Trete einem bestehenden Spiel bei',
     'Join': 'Beitreten',
     'Loading...': 'Wird geladen...',
+    'Rotate your device': 'Drehen Sie Ihr Gerät',
+    'Turn your device to landscape mode to see the game': 'Schalten Sie Ihr Gerät in den Querformatmodus, um das Spiel zu sehen',
 };
 
 const Text = ({ children }) => {

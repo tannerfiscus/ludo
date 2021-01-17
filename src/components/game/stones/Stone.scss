@@ -6,8 +6,10 @@
     cursor: move;
     height: $stone-size;
     opacity: 1;
+    position: relative;
     transition: opacity 0.2s ease;
     width: $stone-size;
+    z-index: $stone-z-index;
 }
 
 .stone--dragging {

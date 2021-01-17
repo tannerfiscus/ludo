@@ -4,6 +4,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import GameBoardPiece from './GameBoardPiece';
+import GameOrientationWarning from './GameOrientationWarning';
 import HomeSections from './home/HomeSections';
 import Layout from '../layout';
 import StoneSections from './stones/StoneSections';
@@ -63,6 +64,7 @@ const Game = ({ gameId }) => {
                             <StoneSections />
                             <HomeSections />
                         </div>
+                        <GameOrientationWarning />
                     </div>
                 </Layout>
             </DndProvider>

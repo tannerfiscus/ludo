@@ -5,6 +5,7 @@
     height: 108px;
     position: absolute;
     width: 108px;
+    z-index: $stone-placement-z-index;
 
     .stone-spot {
         border-radius: 50%;

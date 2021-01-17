@@ -10,6 +10,7 @@ $length: 228px;
     position: absolute;
     width: $stone-size;
     justify-content: space-between;
+    z-index: $stone-placement-z-index;
 
     .home-spot {
         flex: 0 0 $stone-size;

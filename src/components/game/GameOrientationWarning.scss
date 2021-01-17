@@ -1,0 +1,25 @@
+@import '../../constants/styles/colors';
+@import '../../constants/styles/game';
+
+.orientation-warning {
+    align-items: center;
+    background: $light-tan;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 25px;
+    z-index: $stone-z-index + 1;
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    @media (orientation: portrait) {
+        display: flex;
+    }
+}
