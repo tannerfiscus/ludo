@@ -17,7 +17,7 @@ const Layout = ({ children, isFullWidth = false, showHeader = true }) => (
 			showHeader && <Header />
 		}
 		<main className={classnames("content", {
-			['content--condensed']: !isFullWidth,
+			'content--condensed': !isFullWidth,
 		})}>
 			{children}
 		</main>

@@ -1,0 +1,9 @@
+@import '../constants/styles/colors';
+
+.language-wrapper {
+    border-bottom: 1px solid $dark-brown;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: 0;
+}

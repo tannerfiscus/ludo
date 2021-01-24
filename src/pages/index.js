@@ -4,12 +4,14 @@ import { navigate } from 'gatsby';
 
 import Button from '../components/button/Button';
 import Container from '../components/container/Container';
+import FirebaseContext from '../components/firebase/FirebaseContext';
 import Input from '../components/input/Input';
+import LanguageControl from '../components/language/LanguageControl';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Text from '../components/text/Text';
 
-import FirebaseContext from '../components/firebase/FirebaseContext';
+import './index.scss';
 
 const IndexPage = ({ location }) => {
 	const firebaseContext = React.useContext(FirebaseContext);
@@ -63,6 +65,9 @@ const IndexPage = ({ location }) => {
 	return (
 		<Layout showHeader={false}>
 			<SEO title="Home" />
+			<div className="language-wrapper">
+				<LanguageControl />
+			</div>
 			<div>
 				<h1>
 					<Text>Log in</Text>

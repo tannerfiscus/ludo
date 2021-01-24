@@ -8,9 +8,11 @@ import GameOrientationWarning from './GameOrientationWarning';
 import HomeSections from './home/HomeSections';
 import Layout from '../layout';
 import StoneSections from './stones/StoneSections';
+import TextContext from '../text/TextContext';
 import './Game.scss';
 
 import { GameContextProvider } from './GameContext';
+import { getString } from '../../constants/strings';
 
 const gameSections = [
     [4, 5, 1, 5, 4],
@@ -18,6 +20,7 @@ const gameSections = [
 ];
 
 const Game = ({ gameId }) => {
+    const { language } = React.useContext(TextContext);
     let pieceIndex = 0;
 
     React.useEffect(() => {
@@ -38,18 +41,13 @@ const Game = ({ gameId }) => {
                     <div className="game-wrapper">
                         <div className="game-border">
                             <ul className="game-text-row">
-                                <li>
-                                    <h2>Mensch</h2>
-                                </li>
-                                <li>
-                                    <h2>ärgere</h2>
-                                </li>
-                                <li>
-                                    <h2>Dich</h2>
-                                </li>
-                                <li>
-                                    <h2>nicht!</h2>
-                                </li>
+                                {
+                                    getString('Do not get angry!', language).split(' ').map(string => (
+                                        <li key={string}>
+                                            <h2>{string}</h2>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                             <div className="game-pieces">
                                 {

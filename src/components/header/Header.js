@@ -1,7 +1,10 @@
 import React from "react"
 
+import { Link } from 'gatsby';
+
 import FirebaseContext from '../firebase/FirebaseContext';
 import Text from '../text/Text';
+import LanguageControl from '../language/LanguageControl';
 import UserContext from '../user/UserContext';
 
 import './Header.scss';
@@ -12,12 +15,14 @@ const Header = () => {
     
     return (
         <header className="header">
-            <div className="header-logo">
-                <div />
-                <div />
-                <div />
-                <div />
-            </div>
+            <Link to="/play">
+                <div className="header-logo">
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                </div>
+            </Link>
 
             <span className="header-name">
                 <Text>Hello</Text>
@@ -25,6 +30,7 @@ const Header = () => {
                     userName ? `, ${userName}` : null
                 }
             </span>
+            <LanguageControl />
             <button className="header-logout-button" onClick={() => firebase.doSignOut()}>
                 <Text>Log out</Text>
             </button>

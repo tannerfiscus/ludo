@@ -2,8 +2,10 @@ import React from 'react';
 
 import FirebaseContext from '../firebase/FirebaseContext';
 import Text from '../text/Text';
+import TextContext from '../text/TextContext';
 
 import { defaultGameState } from '../../constants/game';
+import { getString } from '../../constants/strings';
 
 const GameContext = React.createContext(defaultGameState);
 
@@ -14,6 +16,7 @@ export const GameContextProvider = ({ children, gameId }) => {
     const [boardState, setBoardState] = React.useState(defaultGameState);
     const [isLoading, setIsLoading] = React.useState(false);
     const [isValidGame, setIsValidGame] = React.useState(true);
+    const { language } = React.useContext(TextContext);
 
     React.useEffect(() => {
         firebase.game(gameId).on('value', snapshot => {
@@ -104,11 +107,28 @@ export const GameContextProvider = ({ children, gameId }) => {
             newBoardState.resting[returningStoneColor][availableReturnIndex] = returningStoneId;
         }
 
-        firebase.game(gameId).set(newBoardState, (error) => {
-            if (error) {
-                alert('An error occurred saving the game state');
-            }
+        // Let's add a check to sanity check that something didn't go rouge and it
+        // deleted one of the pieces. If it did, then we should not update state.
+        let numberOfStones = 0;
+        Object.keys(newBoardState).map(stateKey => {
+            Object.keys(newBoardState[stateKey]).forEach(nestedStateKey => {
+                newBoardState[stateKey][nestedStateKey].forEach(stonePlace => {
+                    if (stonePlace) {
+                        numberOfStones = numberOfStones + 1;
+                    }
+                });
+            });
         });
+
+        if (numberOfStones !== 16) {
+            alert(getString('Move failed. Please try again.', language));
+        } else {
+            firebase.game(gameId).set(newBoardState, (error) => {
+                if (error) {
+                    alert(getString('An error occurred saving the game state.', language));
+                }
+            });
+        }
     };
 
     return (
