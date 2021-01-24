@@ -14,7 +14,7 @@ const GameBoardPiece = ({ index }) => {
         boardState: { board },
         setStonePlacement
     } = React.useContext(GameContext);
-
+    
     const currentStone = board.stones[index];
 
     const [{ isOver }, drop] = useDrop({

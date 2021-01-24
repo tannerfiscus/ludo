@@ -21,7 +21,7 @@ const gameSections = [
 
 const Game = ({ gameId }) => {
     const { language } = React.useContext(TextContext);
-    let pieceIndex = 0;
+    let pieceIndex = -1;
 
     React.useEffect(() => {
         const calculateInnerHeight = () => {

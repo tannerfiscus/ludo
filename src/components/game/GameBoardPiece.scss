@@ -12,10 +12,10 @@
     transition: background 0.2s ease, box-shadow 0.2s ease;
     width: $stone-size;
 
-    &[data-piece-number="1"]:not(.game-piece--occupied)::after,
-    &[data-piece-number="11"]:not(.game-piece--occupied)::after,
-    &[data-piece-number="21"]:not(.game-piece--occupied)::after,
-    &[data-piece-number="31"]:not(.game-piece--occupied)::after {
+    &[data-piece-number="0"]:not(.game-piece--occupied)::after,
+    &[data-piece-number="10"]:not(.game-piece--occupied)::after,
+    &[data-piece-number="20"]:not(.game-piece--occupied)::after,
+    &[data-piece-number="30"]:not(.game-piece--occupied)::after {
         content: 'A';
         font-size: 1.75em;
         font-weight: 700;
@@ -23,28 +23,28 @@
         position: absolute;
     }
 
-    &[data-piece-number="1"]:not(.game-piece--occupied)::after {
+    &[data-piece-number="0"]:not(.game-piece--occupied)::after {
         color: $yellow;
         transform: rotate(90deg);
         left: 17px;
         top: 9px;
     }
     
-    &[data-piece-number="11"]:not(.game-piece--occupied)::after {
+    &[data-piece-number="10"]:not(.game-piece--occupied)::after {
         color: $green;
         transform: rotate(180deg);
         left: 14px;
         top: 12px;
     }
     
-    &[data-piece-number="21"]:not(.game-piece--occupied)::after {
+    &[data-piece-number="20"]:not(.game-piece--occupied)::after {
         color: $red;
         transform: rotate(-90deg);
         left: 11px;
         top: 9px;
     }
     
-    &[data-piece-number="31"]:not(.game-piece--occupied)::after {
+    &[data-piece-number="30"]:not(.game-piece--occupied)::after {
         left: 14px;
         top: 7px;
     }
